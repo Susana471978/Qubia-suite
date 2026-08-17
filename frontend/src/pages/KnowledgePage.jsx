@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import qubiaLogo from '../assets/qubia-orbital.png'
 import './KnowledgePage.css'
 
-const knowledgeItems = [
+const initialKnowledgeItems = [
   {
     id: 1,
     assistant: 'Real Estate',
@@ -80,9 +80,16 @@ function BrandName() {
 }
 
 function KnowledgePage() {
+  const [knowledgeItems, setKnowledgeItems] = useState(initialKnowledgeItems)
   const [activeFilter, setActiveFilter] = useState('Todos')
   const [search, setSearch] = useState('')
   const [showUpload, setShowUpload] = useState(false)
+
+  const [selectedAssistant, setSelectedAssistant] = useState('Hospitality')
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [customTitle, setCustomTitle] = useState('')
+
+  const fileInputRef = useRef(null)
 
   const visibleItems = useMemo(() => {
     const term = search.trim().toLowerCase()
@@ -103,7 +110,58 @@ function KnowledgePage() {
 
       return matchesAssistant && (!term || searchable.includes(term))
     })
-  }, [activeFilter, search])
+  }, [activeFilter, search, knowledgeItems])
+
+  const handleFileSelect = (event) => {
+    const file = event.target.files?.[0]
+
+    if (!file) return
+
+    setSelectedFile(file)
+
+    if (!customTitle) {
+      const cleanName = file.name.replace(/\.[^/.]+$/, '')
+      setCustomTitle(cleanName)
+    }
+  }
+
+  const handleCreateSource = () => {
+    if (!selectedFile) {
+      fileInputRef.current?.click()
+      return
+    }
+
+    const newItem = {
+      id: Date.now(),
+      assistant: selectedAssistant,
+      title: customTitle.trim() || selectedFile.name,
+      type: 'Documento',
+      source: selectedFile.name,
+      status: 'pendiente',
+      updated: 'Ahora',
+      records: formatFileSize(selectedFile.size),
+    }
+
+    setKnowledgeItems((current) => [newItem, ...current])
+
+    setSelectedFile(null)
+    setCustomTitle('')
+    setShowUpload(false)
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
+
+  const handleCancelUpload = () => {
+    setSelectedFile(null)
+    setCustomTitle('')
+    setShowUpload(false)
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
 
   return (
     <main className="knowledge-shell">
@@ -178,60 +236,116 @@ function KnowledgePage() {
 
             <article>
               <span>Fuentes activas</span>
-              <strong>18</strong>
+              <strong>{knowledgeItems.length}</strong>
               <small>En los tres asistentes</small>
             </article>
 
             <article>
               <span>Documentos</span>
-              <strong>27</strong>
+              <strong>
+                {knowledgeItems.filter(item => item.type === 'Documento').length}
+              </strong>
               <small>PDF y contenido estructurado</small>
             </article>
 
             <article>
-              <span>Registros</span>
-              <strong>1.248</strong>
-              <small>Fragmentos disponibles</small>
+              <span>Indexadas</span>
+              <strong>
+                {knowledgeItems.filter(item => item.status === 'indexado').length}
+              </strong>
+              <small>Disponibles para Qubia</small>
             </article>
 
             <article>
-              <span>Actualización</span>
-              <strong>98%</strong>
-              <small>Fuentes sincronizadas</small>
+              <span>Pendientes</span>
+              <strong>
+                {knowledgeItems.filter(item => item.status === 'pendiente').length}
+              </strong>
+              <small>Esperando procesamiento</small>
             </article>
 
           </section>
 
           {showUpload && (
-            <section className="knowledge-upload">
+            <section className="knowledge-upload knowledge-upload-form">
 
               <div className="upload-copy">
                 <span>NUEVA FUENTE</span>
-                <h2>Añadir conocimiento</h2>
+                <h2>Subir documento</h2>
                 <p>
-                  Puedes cargar documentos, crear FAQs o conectar una fuente de datos.
+                  Selecciona el asistente que utilizará esta información
+                  y añade el archivo.
                 </p>
               </div>
 
-              <div className="upload-options">
+              <div className="upload-form-fields">
 
-                <button>
-                  <strong>↑</strong>
-                  <span>Subir documento</span>
-                  <small>PDF, DOCX, TXT</small>
+                <label>
+                  Asistente
+                  <select
+                    value={selectedAssistant}
+                    onChange={(event) => setSelectedAssistant(event.target.value)}
+                  >
+                    <option>Hospitality</option>
+                    <option>Real Estate</option>
+                    <option>Stay</option>
+                  </select>
+                </label>
+
+                <label>
+                  Nombre de la fuente
+                  <input
+                    type="text"
+                    value={customTitle}
+                    onChange={(event) => setCustomTitle(event.target.value)}
+                    placeholder="Ej. Manual de servicios"
+                  />
+                </label>
+
+                <input
+                  ref={fileInputRef}
+                  className="hidden-file-input"
+                  type="file"
+                  accept=".pdf,.doc,.docx,.txt"
+                  onChange={handleFileSelect}
+                />
+
+                <button
+                  type="button"
+                  className="file-select-button"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  {selectedFile ? 'Cambiar archivo' : 'Seleccionar archivo'}
                 </button>
 
-                <button>
-                  <strong>?</strong>
-                  <span>Crear FAQ</span>
-                  <small>Pregunta y respuesta</small>
-                </button>
+                {selectedFile && (
+                  <div className="selected-file">
+                    <span>▤</span>
 
-                <button>
-                  <strong>↗</strong>
-                  <span>Conectar fuente</span>
-                  <small>API o base de datos</small>
-                </button>
+                    <div>
+                      <strong>{selectedFile.name}</strong>
+                      <small>{formatFileSize(selectedFile.size)}</small>
+                    </div>
+                  </div>
+                )}
+
+                <div className="upload-form-actions">
+                  <button
+                    type="button"
+                    className="upload-cancel"
+                    onClick={handleCancelUpload}
+                  >
+                    Cancelar
+                  </button>
+
+                  <button
+                    type="button"
+                    className="upload-confirm"
+                    onClick={handleCreateSource}
+                  >
+                    Añadir fuente
+                  </button>
+                </div>
 
               </div>
 
@@ -324,6 +438,16 @@ function KnowledgePage() {
 
     </main>
   )
+}
+
+function formatFileSize(bytes) {
+  if (!bytes) return '0 KB'
+
+  if (bytes < 1024 * 1024) {
+    return `${Math.max(1, Math.round(bytes / 1024))} KB`
+  }
+
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
 export default KnowledgePage
