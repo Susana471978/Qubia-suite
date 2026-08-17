@@ -633,3 +633,9 @@
   transform: translateX(-50%);
   box-shadow: 0 0 8px rgba(0, 212, 199, 0.18);
 }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}

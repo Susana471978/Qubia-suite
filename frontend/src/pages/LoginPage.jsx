@@ -67,7 +67,7 @@ function LoginPage() {
 
           <article>
             <div className="assistant-icon">◌</div>
-            <h3>Qubia Guest</h3>
+            <h3>Qubia Stay</h3>
             <p>Atención al huésped</p>
           </article>
 

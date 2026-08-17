@@ -1,22 +1,22 @@
 import { Link } from 'react-router-dom'
 import qubiaLogo from '../assets/qubia-orbital.png'
-import './GuestPage.css'
+import './StayPage.css'
 
-function GuestPage() {
+function StayPage() {
   return (
-    <main className="guest-page">
+    <main className="stay-page">
 
-      <aside className="guest-sidebar">
+      <aside className="stay-sidebar">
 
-        <div className="guest-brand">
+        <div className="stay-brand">
           <img src={qubiaLogo} alt="Qubia" />
           <div>
             <strong>QUBIA</strong>
-            <span>GUEST</span>
+            <span>STAY</span>
           </div>
         </div>
 
-        <nav className="guest-nav">
+        <nav className="stay-nav">
           <a href="#" className="active">⌂ <span>Resumen</span></a>
           <a href="#">◌ <span>Conversaciones</span></a>
           <a href="#">◇ <span>Huéspedes</span></a>
@@ -26,17 +26,17 @@ function GuestPage() {
           <a href="#">⚙ <span>Configuración</span></a>
         </nav>
 
-        <Link to="/suite" className="guest-back">
+        <Link to="/suite" className="stay-back">
           ← Volver a Suite
         </Link>
 
       </aside>
 
-      <section className="guest-main">
+      <section className="stay-main">
 
-        <header className="guest-header">
+        <header className="stay-header">
 
-          <div className="guest-heading">
+          <div className="stay-heading">
             <img src={qubiaLogo} alt="" />
 
             <div>
@@ -44,21 +44,21 @@ function GuestPage() {
                 <span className="brand-qubia">
                   Qub<span className="brand-i">ı</span>a
                 </span>
-                <span className="brand-product"> Guest</span>
+                <span className="brand-product"> Stay</span>
               </h1>
 
               <p>Atención al huésped antes, durante y después de la estancia.</p>
             </div>
           </div>
 
-          <div className="guest-actions">
+          <div className="stay-actions">
             <button>Nueva consulta</button>
             <button>+ Añadir alojamiento</button>
           </div>
 
         </header>
 
-        <section className="guest-hero">
+        <section className="stay-hero">
 
           <div>
             <h2>
@@ -72,7 +72,7 @@ function GuestPage() {
               y acompaña al huésped durante toda su estancia.
             </p>
 
-            <div className="guest-search">
+            <div className="stay-search">
               <input
                 type="text"
                 placeholder="Ej. ¿A qué hora puedo hacer el check-in?"
@@ -81,7 +81,7 @@ function GuestPage() {
             </div>
           </div>
 
-          <div className="guest-summary">
+          <div className="stay-summary">
 
             <div className="summary-card">
               <span>Consultas hoy</span>
@@ -107,15 +107,15 @@ function GuestPage() {
 
         </section>
 
-        <section className="guest-content">
+        <section className="stay-content">
 
-          <article className="guest-panel">
+          <article className="stay-panel">
 
             <div className="panel-title">
               <h3>Consultas frecuentes</h3>
             </div>
 
-            <div className="guest-grid">
+            <div className="stay-grid">
 
               <article>
                 <span>⌂</span>
@@ -145,16 +145,16 @@ function GuestPage() {
 
           </article>
 
-          <aside className="guest-right">
+          <aside className="stay-right">
 
-            <article className="guest-panel">
+            <article className="stay-panel">
 
               <div className="panel-title">
                 <h3>Huéspedes activos</h3>
                 <button>Ver todos</button>
               </div>
 
-              <div className="guest-row">
+              <div className="stay-row">
                 <div>
                   <strong>Laura Gómez</strong>
                   <small>Apto. Atlántico · 3 noches</small>
@@ -162,7 +162,7 @@ function GuestPage() {
                 <span>Activo</span>
               </div>
 
-              <div className="guest-row">
+              <div className="stay-row">
                 <div>
                   <strong>Daniel Pérez</strong>
                   <small>Loft Centro · 5 noches</small>
@@ -170,7 +170,7 @@ function GuestPage() {
                 <span>Activo</span>
               </div>
 
-              <div className="guest-row">
+              <div className="stay-row">
                 <div>
                   <strong>Marta Díaz</strong>
                   <small>Casa Mar · 2 noches</small>
@@ -180,13 +180,13 @@ function GuestPage() {
 
             </article>
 
-            <article className="guest-panel">
+            <article className="stay-panel">
 
               <div className="panel-title">
                 <h3>Actividad reciente</h3>
               </div>
 
-              <div className="guest-activity">
+              <div className="stay-activity">
                 <span>✓</span>
                 <div>
                   <strong>Consulta resuelta</strong>
@@ -195,7 +195,7 @@ function GuestPage() {
                 <time>2 min</time>
               </div>
 
-              <div className="guest-activity">
+              <div className="stay-activity">
                 <span>◌</span>
                 <div>
                   <strong>Nueva conversación</strong>
@@ -204,7 +204,7 @@ function GuestPage() {
                 <time>8 min</time>
               </div>
 
-              <div className="guest-activity">
+              <div className="stay-activity">
                 <span>✦</span>
                 <div>
                   <strong>Solicitud especial</strong>
@@ -225,4 +225,4 @@ function GuestPage() {
   )
 }
 
-export default GuestPage
+export default StayPage

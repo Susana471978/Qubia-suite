@@ -1,0 +1,244 @@
+.section-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 235px 1fr;
+  background:
+    radial-gradient(circle at 74% 18%, rgba(0, 212, 199, 0.04), transparent 28%),
+    #070b12;
+  color: #f4f1ea;
+}
+
+.section-sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 28px 18px;
+  border-right: 1px solid rgba(200, 168, 107, 0.16);
+  background: rgba(4, 9, 15, 0.95);
+  display: flex;
+  flex-direction: column;
+}
+
+.section-logo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 4px 8px 36px;
+}
+
+.section-logo img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.section-logo div {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-logo strong {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+}
+
+.section-logo span {
+  margin-top: 5px;
+  color: #c8a86b;
+  font-size: 0.63rem;
+  letter-spacing: 0.28em;
+}
+
+.section-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.section-nav a {
+  height: 52px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  color: #99a6b3;
+  text-decoration: none;
+}
+
+.section-nav a:hover,
+.section-nav a.active {
+  color: #f4f1ea;
+  border-color: rgba(0, 212, 199, 0.32);
+  background: rgba(0, 212, 199, 0.06);
+  box-shadow: inset 3px 0 0 #00d4c7;
+}
+
+.section-logout {
+  margin-top: auto;
+  padding: 14px;
+  border: 1px solid rgba(200, 168, 107, 0.24);
+  border-radius: 14px;
+  color: #c8a86b;
+  text-decoration: none;
+  text-align: center;
+}
+
+.section-main {
+  padding: 28px 34px;
+}
+
+.section-header {
+  min-height: 90px;
+  padding-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(200, 168, 107, 0.15);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-heading img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+}
+
+.section-heading p {
+  margin: 5px 0 0;
+  color: #c8a86b;
+  font-size: 0.84rem;
+}
+
+.section-brand-title {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+}
+
+.section-brand-qubia {
+  color: #f4f1ea;
+}
+
+.section-brand-product {
+  color: #d5ad63;
+}
+
+.section-brand-i {
+  position: relative;
+  display: inline-block;
+}
+
+.section-brand-i::after {
+  content: "";
+  position: absolute;
+  width: 0.14em;
+  height: 0.14em;
+  border-radius: 50%;
+  background: #00d4c7;
+  left: 50%;
+  top: 0.10em;
+  transform: translateX(-50%);
+}
+
+.section-company {
+  padding: 10px 14px;
+  border: 1px solid rgba(200, 168, 107, 0.25);
+  border-radius: 10px;
+  background: #08121c;
+  color: #aab4c0;
+}
+
+.section-content {
+  padding-top: 58px;
+  max-width: 1050px;
+}
+
+.section-eyebrow {
+  color: #c8a86b;
+  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+}
+
+.section-content h1 {
+  margin: 12px 0;
+  font-family: Georgia, serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 400;
+}
+
+.section-description {
+  max-width: 700px;
+  color: #95a2ae;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.section-development-card {
+  margin-top: 48px;
+  max-width: 850px;
+  min-height: 230px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  border: 1px solid rgba(200, 168, 107, 0.3);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 10% 50%, rgba(200,168,107,.07), transparent 30%),
+    rgba(8,18,28,.75);
+}
+
+.section-development-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.section-development-card span {
+  color: #00d4c7;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+}
+
+.section-development-card h2 {
+  margin: 10px 0;
+  color: #d5ad63;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+}
+
+.section-development-card p {
+  margin: 0;
+  color: #8795a1;
+  line-height: 1.7;
+}
+
+@media (max-width: 800px) {
+  .section-shell {
+    display: block;
+  }
+
+  .section-sidebar {
+    display: none;
+  }
+
+  .section-main {
+    padding: 20px;
+  }
+
+  .section-company {
+    display: none;
+  }
+
+  .section-development-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

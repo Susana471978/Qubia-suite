@@ -17,12 +17,29 @@ function DashboardPage() {
         </div>
 
         <nav className="sidebar-nav">
-          <button className="nav-item active">⌂ <span>Inicio</span></button>
-          <button className="nav-item">✦ <span>Asistentes</span></button>
-          <button className="nav-item">◌ <span>Conversaciones</span></button>
-          <button className="nav-item">↗ <span>Analítica</span></button>
-          <button className="nav-item">◇ <span>Conocimiento</span></button>
-          <button className="nav-item">⚙ <span>Configuración</span></button>
+          <Link className="nav-item active" to="/suite">
+            ⌂ <span>Inicio</span>
+          </Link>
+
+          <Link className="nav-item" to="/suite/assistants">
+            ✦ <span>Asistentes</span>
+          </Link>
+
+          <Link className="nav-item" to="/suite/conversations">
+            ◌ <span>Conversaciones</span>
+          </Link>
+
+          <Link className="nav-item" to="/suite/analytics">
+            ↗ <span>Analítica</span>
+          </Link>
+
+          <Link className="nav-item" to="/suite/knowledge">
+            ◇ <span>Conocimiento</span>
+          </Link>
+
+          <Link className="nav-item" to="/suite/settings">
+            ⚙ <span>Configuración</span>
+          </Link>
         </nav>
 
         <div className="sidebar-user">
@@ -121,8 +138,8 @@ function DashboardPage() {
                 <img src={qubiaLogo} alt="" />
               </div>
 
-              <h3>Qubia Guest</h3>
-              <p className="assistant-role">Atención al huésped</p>
+              <h3>Qubia Stay</h3>
+              <p className="assistant-role">Atención a la estancia</p>
 
               <div className="assistant-footer">
                 <div className="metric">
@@ -130,7 +147,7 @@ function DashboardPage() {
                   <span>consultas resueltas</span>
                 </div>
 
-                <Link to="/guest">
+                <Link to="/stay">
                   Abrir asistente →
                 </Link>
               </div>
@@ -239,7 +256,7 @@ function DashboardPage() {
               <div className="activity-item">
                 <span>◇</span>
                 <div>
-                  <strong>Consulta resuelta en Guest</strong>
+                  <strong>Consulta resuelta en Stay</strong>
                   <small>Información para huésped</small>
                 </div>
                 <time>18 min</time>
