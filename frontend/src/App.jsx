@@ -7,6 +7,7 @@ import RealEstatePage from './pages/RealEstatePage'
 import StayPage from './pages/StayPage'
 import SectionPage from './pages/SectionPage'
 import ConversationsPage from './pages/ConversationsPage'
+import KnowledgePage from './pages/KnowledgePage'
 
 import './App.css'
 
@@ -36,7 +37,7 @@ function App() {
 
         <Route
           path="/suite/knowledge"
-          element={<SectionPage />}
+          element={<KnowledgePage />}
         />
 
         <Route
